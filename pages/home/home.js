@@ -1,6 +1,8 @@
 // pages/home/home.js
 import {getMultiData,getGoodsData} from "../../servies/home.js";
-
+ 
+ const types=["pop","new","sell"]
+ const TOP_BACK=1000
 Page({
 
   /**
@@ -14,7 +16,9 @@ Page({
           "pop": { page: 0, list: [] },
           "new": { page: 0, list: [] },
           "sell": { page: 0, list: [] }
-        }
+        },
+        currenttype:"pop",
+        showback:false
         
   },
 
@@ -44,7 +48,7 @@ Page({
       //console.log(res)
       const banner = res.data.data.banner.list;
       const recommend = res.data.data.recommend.list;
-      console.log(banner, recommend);
+      //console.log(banner, recommend);
       this.setData({
         banner,
         recommend
@@ -54,8 +58,20 @@ Page({
   _getGoodsData(type){
     const page= this.data.goods[type].page+1
      getGoodsData(type,page).then(res=>{
-      console.log(res);
-      //const typeKey=`data.goods${type}.
+     // console.log(res);
+      //1.取出数据
+      const list=res.data.data.list;
+       //
+       const oldList=this.data.goods[type].list;
+       oldList.push(...list);
+        //放入setData
+        const listKey=`goods.${type}.list`
+        const pageKey=`goods.${type}.page`
+        this.setData({
+             [listKey]:oldList,
+             [pageKey]:page
+        })
+
      })
   },
   /**
@@ -97,7 +113,7 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+     this._getGoodsData(this.data.currenttype);
   },
 
   /**
@@ -105,5 +121,23 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  handletab(event){
+    
+    const index=event.detail.index;
+    //console.log(index);
+    this.setData({
+      currenttype:types[index]
+    })
+  },
+  //监听页面滚动条
+  onPageScroll(options){
+    //console.log(options)
+    const flag=options.scrollTop >=TOP_BACK
+    if(flag!=this.data.showback){
+      this.setData({
+        showback:flag
+      })
+    }
   }
 })

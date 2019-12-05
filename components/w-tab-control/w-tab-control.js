@@ -27,7 +27,8 @@ Component({
      this.setData({
        currentindex:index
      })
-      
+     const data={index:this.data.currentindex}
+      this.triggerEvent("tabClick", data, {})
     }
   }
 })

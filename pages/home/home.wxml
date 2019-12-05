@@ -23,9 +23,16 @@
 <w-recommend recommend="{{recommend}}"/>
 
 
-<w-tab-control datas='{{datas}}'/>
+<w-tab-control datas='{{datas}}' bind:tabClick="handletab"/>
 
+<!-- <view class="goods">
+<block wx:for="{{goods[currenttype].list}}" wx:key="{{index}}">
+     <w-goods-item class="item" item="{{item}}"/>
+</block>
+</view> -->
+<w-goods-all list="{{goods[currenttype].list}}" />
 
+<w-topback wx:if="{{showback}}"/>
 
 
 

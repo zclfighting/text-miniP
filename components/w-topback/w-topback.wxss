@@ -1,0 +1,10 @@
+/* components/w-topback/w-topback.wxss */
+.view{
+  position: fixed;
+  right: 14rpx;
+  bottom: 18rpx;
+}
+.image{
+  width: 100rpx;
+  height: 100rpx;
+}

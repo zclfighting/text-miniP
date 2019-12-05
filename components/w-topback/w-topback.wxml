@@ -1,0 +1,4 @@
+<!--components/w-topback/w-topback.wxml-->
+<view class="view">
+<image class="image" src="/assets/images/TOP.png" bind:tap="backtop"></image>
+</view>

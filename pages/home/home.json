@@ -2,7 +2,9 @@
   "usingComponents": {
     "w-swiper": "/components/w-swiper/w-swiper",
     "w-recommend":"/components/w-recommend/w-recommend",
-    "w-tab-control":"/components/w-tab-control/w-tab-control"
+    "w-tab-control":"/components/w-tab-control/w-tab-control",
+    "w-goods-all":"/components/w-goods-all/w-goods-all",
+    "w-topback":"/components/w-topback/w-topback"
 
   },
   "navigationBarTitleText": "购物街",
